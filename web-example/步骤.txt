@@ -35,3 +35,16 @@
    conf\Catalina\localhost\webexample.xml 存放的是：
            <Context path="/webexample" docBase="E:\code\web_code\out\artifacts\web_example_war_exploded" />
    说明浏览器输入该路径的时候就会通过该配置访问E盘中真实路径
+
+9. 请求，响应 http 协议
+   （1）tomcat 先拿到浏览器发送的请求报文，将其封装成为 HttpServletRequest 对象
+   （2）tomcat 同时创建了一个 HttpServletResponse 对象，该对象用于承装要响应给客户端的信息，该对象会被转换成响应的报文
+   （3）我们实现的类要实现 servlet 接口，重写 service() 方法
+       service(HttpServletRequest request, HttpServletResponse reponse)
+       这个 service 方法不是我们去调用的，是 Tomcat 根据请求中的资源路径找到对应的 servlet，将 servlet 实例化，调用
+       service 中的方法，同时将 HttpServletRequest 和 HttpServletResponse 对象传入
+       我们给当前的 servlet 指定请求路径，tomcat 根据请求路径来调用方法
+   （4）在 service 方法内部，我们从 request 对象中去获取请求报文中的信息
+       根据拿到的参数去生成要响应给客户端的数据，将响应的数据放入 response 对象
+       Tomcat 就会将这个 response 对象转成对应的报文发给客户端即可
+10.
