@@ -27,7 +27,8 @@
    Server 页中如果勾选 After launch，就会通过默认浏览器并且在浏览器中输入一段地址
    设置端口号 | 设置
 
-   控制台输入乱码：conf-logging.properties-catalina 的修改为 GBK
+   控制台（cmd窗口）输出乱码 conf-logging.properties-ConsoleHandler.encoding = GBK
+   日志输出乱码：conf-logging.properties-catalina 的修改为 GBK
 
 8. tomcat 将 javaweb 的 out 文件中的 app 创建了一个副本，而不是直接将部署的项目放在 webapps 中
    这个副本默认在C盘的 C:\Users\34927\AppData\Local\JetBrains\IntelliJIdea2024.1\tomcat
@@ -47,4 +48,23 @@
    （4）在 service 方法内部，我们从 request 对象中去获取请求报文中的信息
        根据拿到的参数去生成要响应给客户端的数据，将响应的数据放入 response 对象
        Tomcat 就会将这个 response 对象转成对应的报文发给客户端即可
-10.
+
+10. Project structure 中的 moudle 的 dependencies 中 Scope 列的意思是该依赖的作用域
+    Provided = 编码的时候需要，编译（构建打包）的时候不携带
+
+
+11. <servlet>
+        <servlet-name>userServlet1</servlet-name>
+        <servlet-class>com.jiehfut.servlet.UserServlet</servlet-class>
+    </servlet>
+    <!--后端关联前端 映射前端 form 表单的 action-->
+    <servlet-mapping>
+        <servlet-name>userServlet1</servlet-name>
+        <url-pattern>/userServlet2</url-pattern>
+    </servlet-mapping>
+
+    通过浏览器输入 http://localhost:8080/detectusername/userServlet2
+                匹配前端的 userServlet2，其所对应的别名是 userServlet1
+                根据别名去找到对应的类：com.jiehfut.servlet.UserServlet，
+                Tomcat 拿到这个路径之后就通过反射拿到其字节码，然后由反射去执行其 service 方法
+
