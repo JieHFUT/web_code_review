@@ -1,0 +1,7 @@
+ServletContext也可以对 servlet 提供配置参数
+不过 ServletContext 是为所有的 servlet 提供配置参数
+
+ServletCogfig 是多例的，每一个 servlet 都有一个 ServletCogfig 对象
+ServletContext 是单例的，所有的 servlet 共用一个 ServletContext 对象
+
+

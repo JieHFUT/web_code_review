@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 
+/**
+ * 使用注解来 servlet 类进行参数配置
+ */
 @WebServlet(
         urlPatterns = "/annotateConfig",
         initParams = {@WebInitParam(name = "keya", value = "valuea"),
