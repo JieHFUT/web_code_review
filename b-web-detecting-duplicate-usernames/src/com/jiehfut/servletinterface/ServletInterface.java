@@ -149,6 +149,8 @@ public class ServletInterface {
 
         很明显可以看出来，如果自己写的 servlet 方法不去重写 service 方法，那么就会去调用父类的 service 方法
         就会直接返回 405 状态码
+
+
     */
 
 
