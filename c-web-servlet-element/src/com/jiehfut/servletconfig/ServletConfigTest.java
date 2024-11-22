@@ -37,6 +37,7 @@ public class ServletConfigTest extends HttpServlet {
      * 在构造的时候，Tomcat 将配置中的初始参数放进 ServletConfig 对象
      * Tomcat 在调用 servletConfigTest，在进行 init() 的时候，会将这个对象传入，存在父类 GenericServlet 的 config 属性中
      * 我们就可以读到初始化的配置信息：getServletConfig()
+     * 每一个 Servlet 都有独立的 ServletConfig 对象，独立配置
      *
      * @param req
      * @param resp
@@ -59,7 +60,6 @@ public class ServletConfigTest extends HttpServlet {
             String initParameterName = initParameterNames.nextElement();
             System.out.println("initParameterName = " + initParameterName);
         }
-
 
     }
 
