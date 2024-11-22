@@ -70,6 +70,27 @@
 
 
 
+    <servlet>
+        <servlet-name>lifeCycle</servlet-name>
+        <servlet-class>com.jiehfut.lifecycle.LifeCycle</servlet-class>
+        <!--
+            默认值是 -1，含义是 Tomcat 启动的时候不会实例化 servlet，如果是正整数，就是在服务启动的时候实例化
+            如果放置其他正整数，含义是 Tomcat 在启动的时候实例化该 servlet 的顺序（该servlet是第几个被实例化的）
+            如果实例化的顺序冲突了，Tomcat 会自动协调启动顺序
+
+            前几的顺序都已经被 Tomcat 本身占用了，Tomcat.conf.web.xml 文件是所有 app 抽出来的公共配置
+        -->
+        <load-on-startup>-1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>lifeCycle</servlet-name>
+        <url-pattern>/lifeCycle</url-pattern>
+    </servlet-mapping>
+
+
+
+
+
 
 
 </web-app>
