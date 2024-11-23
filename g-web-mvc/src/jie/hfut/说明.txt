@@ -1,6 +1,7 @@
 MVC
 M: Model    ====>  模型：数据的增删改查，业务处理
     pojo/entity/bean 实体类和对象
+    vo               有些参数不是实体类属性一一对应的（valueObject）
     dao/mapper       CRUD方法封装的一些类
     service          对数据进行业务逻辑运算的一些类
 V: View     ====>  视图：界面（静态资源）
