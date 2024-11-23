@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--
+        引入图片
+        1.相对路径，以当前资源所在的路径作为出发点去寻找目标资源
+            不以 / 开头
+            ./ 表示当前资源上的路径
+            ../ 表示当前资源的上一层路径
+
+            客户端再请求的 html 资源中遇到一个相对路径的资源，再向服务器发送一个请求
+            http://localhost:8080/path/index.html
+            index.html = 当前资源
+            http://localhost:8080/path/ = 当前路径
+            相对路径的规划就是在当前资源的所在路径后，拼接目标资源的路径，然后发送请求找目标资源
+            "static/img/luffy.jpg" => 客户端就会向 http://localhost:8080/path/static/img/luffy.jpg
+
+
+
+
+
+
+            如果在项目中的 a/b/c/test.html 中访问资源 "static/img/luffy.jpg"
+            很明显是访问不了的 => 因为会去访问 http://localhost:8080/path/a/b/c/static/img/luffy.jpg => 404
+
+            如果想要正确访问资源，可以在项目中的 a/b/c/test.html 中访问资源 "../../../static/img/luffy.jpg"
+            就会去访问 http://localhost:8080/path/a/b/c/../../../static/img/luffy.jpg => 200，得到资源
+
+
+
+
+
+
+            如果项目的磁盘结构和你的 URL 结构是不匹配的，如在项目中的 WEB-INF/views/view1.html 中访问资源 "static/img/luffy.jpg"
+            就算访问资源路径是 "../../static/img/luffy.jpg" 也是加载不到的
+            甚至连 WEB-INF/views/view1.html 都访问不了，因为 WEB-INF 下的资源是受到保护的
+            如果想要访问，就需要使用请求转发来访问
+
+
+            假设使用了请求转发真的访问到了 WEB-INF/views/view1.html，在其继续访问 "../../static/img/luffy.jpg" 也是加载不到的
+            http://localhost:8080/path/viewPath  =>  请求转发：http://localhost:8080/path/WEB-INF/views/view1.html
+         => http://localhost:8080/path/../../static/img/luffy.jpg  =>  http://localhost:8080/static/img/luffy.jpg
+            很显然不能拿到请求的目标资源
+
+
+
+
+
+
+
+
+        2.绝对路径
+    -->
+    <img src="static/img/luffy.jpg" alt="">
+
+
+
+
+</body>
+</html>

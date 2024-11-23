@@ -18,6 +18,9 @@ import java.io.IOException;
  * @Version 1.0
  */
 
+/**
+ * POST 请求参数乱码问题
+ */
 @WebServlet("/postParams")
 public class PostParams extends HttpServlet {
 

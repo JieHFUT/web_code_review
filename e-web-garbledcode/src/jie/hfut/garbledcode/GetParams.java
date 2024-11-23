@@ -37,7 +37,7 @@ public class GetParams extends HttpServlet {
         connectionTimeout="20000"
         redirectPort="8443"
         maxParameterCount="1000"
-        URIEncoding = "UTF-8"
+        URIEncoding="UTF-8"/>
 
         GET /garbledcode/getParams?username=%CE%D2%B5%C4 HTTP/1.1
         改变的是对于请求行的 URI 这一部分的解码的字符集 （/garbledcode/getParams?username=%CE%D2%B5%C4）
