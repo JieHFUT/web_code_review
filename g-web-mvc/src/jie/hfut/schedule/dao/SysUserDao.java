@@ -1,5 +1,7 @@
 package jie.hfut.schedule.dao;
 
+import jie.hfut.schedule.pojo.SysUser;
+
 /**
  * ClassName: SysUserDao
  * Package: jie.hfut.schedule.dao
@@ -16,4 +18,17 @@ package jie.hfut.schedule.dao;
 
 public interface SysUserDao {
 
+    /**
+     * 这是向数据库中增加一条用户记录的方法
+     * @param sysUser 要增加的记录的 username && userPwd 字段，以 SysUser 对象的形式接收（null, username, userPwd）
+     * @return 返回受到影响的行数
+     */
+    int addSysUser(SysUser sysUser);
+
+    /**
+     * 这是根据用户名获得完成用户信息的方法
+     * @param username 要查询的用户名
+     * @return 如果找到了就返回查询到的用户对象，找不到就返回 null
+     */
+    SysUser findByUsername(String username);
 }
