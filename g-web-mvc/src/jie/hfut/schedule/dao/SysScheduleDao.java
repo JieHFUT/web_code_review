@@ -2,6 +2,8 @@ package jie.hfut.schedule.dao;
 
 import jie.hfut.schedule.pojo.SysSchedule;
 
+import java.util.List;
+
 /**
  * ClassName: SysScheduleDao
  * Package: jie.hfut.schedule.dao
@@ -23,6 +25,13 @@ public interface SysScheduleDao {
      * @return 返回影响数据库记录的行数，为 0说明增加失败，行数大于零说明添加失败
      */
     int addSysSchedule(SysSchedule sysSchedule);
+
+    /**
+     * 查询所有用户所有的日程
+     * @return 将所有的日程放入一个：List<SysSchedule> 集合中返回
+     */
+    List<SysSchedule> getSysSchedule();
+
 
 
 }

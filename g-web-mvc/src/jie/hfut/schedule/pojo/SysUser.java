@@ -54,7 +54,7 @@ public class SysUser implements Serializable {
 
     private String username;
 
-    private String uesrPwd;
+    private String userPwd;
 
 
 

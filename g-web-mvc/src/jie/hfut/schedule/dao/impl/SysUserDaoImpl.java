@@ -1,5 +1,6 @@
 package jie.hfut.schedule.dao.impl;
 
+import jie.hfut.schedule.dao.BaseDao;
 import jie.hfut.schedule.dao.SysUserDao;
 
 /**
@@ -11,7 +12,7 @@ import jie.hfut.schedule.dao.SysUserDao;
  * @Create 2024/11/23 22:37
  * @Version 1.0
  */
-public class SysUserDaoImpl implements SysUserDao {
+public class SysUserDaoImpl extends BaseDao implements SysUserDao {
 
 
 }
