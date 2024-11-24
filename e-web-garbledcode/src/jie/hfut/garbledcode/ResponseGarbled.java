@@ -47,7 +47,7 @@ public class ResponseGarbled extends HttpServlet {
          * 后端可以设置响应的编码方式去适应前端 resp.setCharacterEncoding("GBK");
          * 但是具体前端是什么来访问是不确定的（如国外访问），所以这种方式不是很好
          * 解决思路：
-         *      1.后端适应前端不推荐
+         *      1.后端适应前端（不推荐）
          *          resp.setCharacterEncoding("GBK");
          *      2.指定客户端使用什么字符集进行解码（设置 Content-Type 响应头）
          *          resp.setContentType("text/html;charset=UTF-8");

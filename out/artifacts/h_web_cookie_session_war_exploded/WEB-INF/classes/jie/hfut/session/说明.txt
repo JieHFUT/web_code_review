@@ -13,23 +13,12 @@ session:{key1=value1,key2=value2,key3=value3,key4=value4,key5=value5,key6=value6
 视频播放进度等不敏感的信息可以放在 cookie 中
 后端如果需要使用 session，一定要配合 cookie 使用
 
-
-
-
-
-
-
-
-
-
 服务器 session 对象的生命周期是 30 min，如果 30 min 内有新的访问，那么会刷新 30 min 的计时
 session 对象的生命周期可以在 tomcat/conf/web.xml 中配置
 如果在自己的 WEB-INF/web.xml 中配置，会覆盖 tomcat/conf/web.xml 中配置
+
 <session-config>
     <session-timeout>30</session-timeout>
 </session-config>
-
-也可以通过 HttpSession 对象的 API 动态的对 session 对象的生命周期进行设置
-session.setMaxInactiveInterval(30);
 
 
