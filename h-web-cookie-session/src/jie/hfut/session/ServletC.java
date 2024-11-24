@@ -27,6 +27,5 @@ public class ServletC extends HttpServlet {
 
         // 获得 session 对象
 
-
     }
 }
