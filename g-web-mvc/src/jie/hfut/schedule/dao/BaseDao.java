@@ -11,7 +11,11 @@ import java.util.List;
  * ClassName: BaseDao
  * Package: jie.hfut.schedule.dao
  * Description:
- *
+ * 该 BaseDao 类封装了对数据库 CRUD 的具体操作方法
+ * 其他的 Dao 类如果需要对数据库见操作，只需要传入参数，调用该封装类的接口即可
+ * 1.向外提供一个公共的查询方法，返回的是单个行的对象：baseQueryObject
+ * 2.向外提供一个公共的查询方法，返回的是多个行对象的一个集合：baseQueryList
+ * 3.向外提供一个增删改的方法，返回的是数据库受到影响的行数：baseUpdate
  * @Author jieHFUT
  * @Create 2024/11/23 23:24
  * @Version 1.0
