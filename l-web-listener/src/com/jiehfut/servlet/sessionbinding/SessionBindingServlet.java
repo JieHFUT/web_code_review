@@ -7,7 +7,7 @@ import jakarta.servlet.http.*;
 import java.io.IOException;
 
 @WebServlet("/sessionbinding")
-public class SessionBindingListener extends HttpServlet {
+public class SessionBindingServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,6 +20,5 @@ public class SessionBindingListener extends HttpServlet {
         req.setAttribute("httpSessionBindingListener", httpSessionBindingListener);
         // 当这个对象从 session 对象移除的时候，触发监视器
         req.removeAttribute("httpSessionBindingListener");
-
     }
 }
