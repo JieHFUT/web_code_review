@@ -1,0 +1,31 @@
+监听器：在域对象发生事件（如对象的创建、对象的销毁、数据的增加、数据的修改、数据的删除）
+在发生这些事情的时候，执行对应的代码
+
+public class ApplicationListener implements ServletContextListener {
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        // 监听应用域初始化（ServletContextEvent：应用域事件对象）
+
+        // 获取应用域
+        ServletContext application = sce.getServletContext();
+        System.out.println("应用域 " + application.hashCode() + " 被初始化了");
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+        // 监听应用域销毁
+
+        ServletContext application = sce.getServletContext();
+        System.out.println("应用域 " + application.hashCode() + " 被销毁了");
+    }
+}
+
+写好监听器后，如果想要监听器生效
+    1.在 web.xml 文件中进行配置
+        <!--配置监听器-->
+        <listener>
+            <listener-class>com.jiehfut.listener.application.ApplicationListener</listener-class>
+        </listener>
+    2.使用注解进行配置
+        在监听类上注解 @WebListener
+

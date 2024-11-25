@@ -40,8 +40,8 @@ public @interface WebFilter {
     String smallIcon() default "";
     String largeIcon() default "";
     String[] servletNames() default {}; ============== 标识通过 servlet 别名的方式进行过滤请求
-    String[] value() default {};
-    String[] urlPatterns() default {}; ============== 标识访问路径的方式进行过滤请求
+    String[] value() default {};  ==================== value 属性和 urlPatterns 互为别名，只有一个 value 属性可以省略不写
+    String[] urlPatterns() default {}; =============== 标识访问路径的方式进行过滤请求
     DispatcherType[] dispatcherTypes() default {DispatcherType.REQUEST};
     boolean asyncSupported() default false;
 }
