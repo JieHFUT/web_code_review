@@ -59,14 +59,41 @@
             request.onreadystatechange = function() {
                 if(request.status == 200 && request.readyState == 4) {
                     console.log(request.responseText);
-                    usernameMsg.innerText = request.responseText;
+                    // 将后端发送过来的 JSON 串转换为对象
+                    var result = JSON.parse(request.responseText);
+                
+                    if(result.code == 200) {
+                        // 前后端约定的成功响应
+                        usernameMsg.innerText = "用户名可用";
+                    } else if(result.code == 504) {
+                        usernameMsg.innerText = "用户名被占用";
+                    }
                 }
+                /** 
+                * 1.响应乱码问题
+                * 2.响应信息格式不规范
+                *       后端响应回来的信息应当有一个统一的格式，前后端共同遵守
+                *       后端对所有的响应都进行一个封装，给前端响应一个 JSON 串
+                *       {"":"", "":"",......}
+                *       应该包括下面这些属性
+                *       {
+                *           "code":"",           ===> 业务状态码，本次请求的业务是否成功，如果失败了，是什么原因造成的？（不是响应报文中的响应码）
+                *           "message":"",        ===> 业务状态码的补充描述，是对业务状态码的说明。
+                *           "data":{"":"","":""......}            ===> 用来装本次响应的数据
+                *       } 
+                *       
+                * 3.校验不通过，无法阻止表单提交的问题
+                * 4.
+                */
 
             }
             // 设置请求方式以及请求路径
             request.open("GET", "/user/checkUsernameUsed?username=" + username);
             // 发送请求
             request.send();
+
+            username.innerText="OK";
+            return true;
         }
 
 

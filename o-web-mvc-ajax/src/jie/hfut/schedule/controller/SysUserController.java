@@ -1,10 +1,13 @@
 package jie.hfut.schedule.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jie.hfut.schedule.common.Result;
+import jie.hfut.schedule.common.ResultCodeEnum;
 import jie.hfut.schedule.pojo.SysUser;
 import jie.hfut.schedule.service.SysUserService;
 import jie.hfut.schedule.service.impl.SysUserServiceImpl;
@@ -96,12 +99,20 @@ public class SysUserController extends BaseController {
         String username = req.getParameter("username");
         // 调用服务层的业务处理方法查询该用户名是否有对应的用户
         SysUser sysUser = userService.findByUsername(username);
-        String info = "可用";
+
+        // 在这里响应一个成功的状态码：ok()方法中自己添加了一个 sucess 的枚举
+        Result result = Result.ok(null);
+
         if (null != sysUser) {
             // 有该用户 => 响应已被占用
-            info = "不可用";
+            result = Result.build(null, ResultCodeEnum.USERNAME_USED);
         }
+        // 把 result 对象转换成为 JSON 串
+        ObjectMapper objectMapper = new ObjectMapper();
+        String json = objectMapper.writeValueAsString(result);
         // 如果没有该用户 => 响应可用
-        resp.getWriter().write(info);
+        // 告诉客户端响应是一种 JSON 串
+        resp.setContentType("application/json;charset=utf-8");
+        resp.getWriter().write(json);
     }
 }
