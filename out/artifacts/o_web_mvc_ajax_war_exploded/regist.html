@@ -58,7 +58,7 @@
             // 设置响应回调函数，也就是设置响应回来的信息如何处理
             request.onreadystatechange = function() {
                 if(request.status == 200 && request.readyState == 4) {
-                    alert("接收到后端响应");
+                    console.log(request.responseText);
                     usernameMsg.innerText = request.responseText;
                 }
 

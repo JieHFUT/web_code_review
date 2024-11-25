@@ -58,9 +58,16 @@
             // 设置响应回调函数，也就是设置响应回来的信息如何处理
             request.onreadystatechange = function() {
                 if(request.status == 200 && request.readyState == 4) {
-                    alert("接收到后端响应");
+                    console.log(request.responseText);
                     usernameMsg.innerText = request.responseText;
                 }
+                /** 
+                * 1.响应乱码问题
+                * 2.响应信息格式不规范
+                * 3.校验不通过，无法阻止表单提交的问题
+                * 4.
+                 * */
+                
 
             }
             // 设置请求方式以及请求路径
