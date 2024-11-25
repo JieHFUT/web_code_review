@@ -1,0 +1,14 @@
+使用 web.xml 文件进行配置的时候过滤器的执行顺序
+filtera before dofilter invoked
+filterb before dofilter invoked
+filterc before dofilter invoked
+目标资源
+filterc after dofilter invoked
+filterb after dofilter invoked
+filtera after dofilter invoked
+
+
+执行的过滤器顺序和 web.xml 文件中配置的 <filter-mapping> 的顺序有关
+
+过滤器的配置也可以不在 web.xml 文件中进行配置，例如把现在 web.xml 中的配置信息以注解的形式进行配置
+使用注解进行过滤器配置的时候，过滤器的执行顺序
