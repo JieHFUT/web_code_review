@@ -1,4 +1,4 @@
-package jiehfut.hfut.schedule.filter;
+package jiehfut.schedule.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

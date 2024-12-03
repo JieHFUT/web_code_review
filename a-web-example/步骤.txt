@@ -1,6 +1,6 @@
 1. Tomcat 关联 IDEA
 2. 创建一个 moudle
-3. 添加 Tomcat 依赖（web资源组件）
+3. 模块添加 Tomcat 依赖（web资源组件）
 4. 进行代码编写
    java 源代码放在 src 中
    js css html jpg 放在 web 中
