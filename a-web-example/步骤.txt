@@ -32,7 +32,7 @@
 
 8. tomcat 将 javaweb 的 out 文件中的 app 创建了一个副本，而不是直接将部署的项目放在 webapps 中
    这个副本默认在C盘的 C:\Users\34927\AppData\Local\JetBrains\IntelliJIdea2024.1\tomcat
-   这个文件夹中存放的仅仅是和要部署的项目相关的配置文件，让你安装的 tomcat 软件安装这个C盘中的这一套配置文件运行
+   这个文件夹中存放的仅仅是和要部署的项目相关的配置文件，让你安装的 tomcat 软件按照这个C盘中的这一套配置文件运行
    conf\Catalina\localhost\webexample.xml 存放的是：
            <Context path="/webexample" docBase="E:\code\web_code\out\artifacts\web_example_war_exploded" />
    说明浏览器输入该路径的时候就会通过该配置访问E盘中真实路径
