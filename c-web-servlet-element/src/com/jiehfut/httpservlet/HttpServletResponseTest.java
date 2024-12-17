@@ -52,6 +52,15 @@ public class HttpServletResponseTest extends HttpServlet {
 
 
 
+        /**
+         * 在 ServletResponse 中
+         * 获取一个向响应体中输入二进制的字节流的对象（char int... String）
+         * ServletOutputStream getOutputStream() throws IOException;
+         *
+         * 获得一个向响应体中输入文本字符输出流（char int... String, Object）
+         * PrintWriter getWriter() throws IOException;
+         */
+
 
 
 

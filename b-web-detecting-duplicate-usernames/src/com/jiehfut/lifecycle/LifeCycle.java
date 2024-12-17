@@ -33,6 +33,42 @@ import java.io.IOException;
  *         <url-pattern>/</url-pattern>
  *     </servlet-mapping>
  * 如果一个静态资源请求路径没有和任何一个 servlet 匹配上，就会将这个请求交给 default servlet 处理
+ *
+ *     <servlet>
+ *         <servlet-name>default</servlet-name>
+ *         <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+ *         <init-param>
+ *             <param-name>debug</param-name>
+ *             <param-value>0</param-value>
+ *         </init-param>
+ *         <init-param>
+ *             <param-name>listings</param-name>
+ *             <param-value>false</param-value>
+ *         </init-param>
+ *         <load-on-startup>1</load-on-startup>
+ *     </servlet>
+ *
+ *     <servlet>
+ *         <servlet-name>jsp</servlet-name>
+ *         <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
+ *         <init-param>
+ *             <param-name>fork</param-name>
+ *             <param-value>false</param-value>
+ *         </init-param>
+ *         <init-param>
+ *             <param-name>xpoweredBy</param-name>
+ *             <param-value>false</param-value>
+ *         </init-param>
+ *         <load-on-startup>3</load-on-startup>
+ *     </servlet>
+ *
+ *     <servlet-mapping>
+ *         <servlet-name>default</servlet-name>
+ *         <url-pattern>/</url-pattern>
+ *     </servlet-mapping>
+ *
+ *
+ *
  * default servlet 会根据你请求的资源路径，找到对应的文件，通过 IO 流读取这个文件，
  * 然后将这个文件放到 response 中去，并且判断文件拓展名，选择合适的类型设置响应头：Content-Type
  * 并且读取文件大小设置响应头：Content-length

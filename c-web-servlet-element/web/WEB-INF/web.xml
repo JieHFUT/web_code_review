@@ -17,7 +17,7 @@
     <servlet>
         <servlet-name>servletConfigTest</servlet-name>
         <servlet-class>com.jiehfut.servletconfig.ServletConfigTest</servlet-class>
-        <!--配置 servlet 的初始参数-->
+        <!--配置 servlet 的初始参数，这是请求域的参数-->
         <init-param>
             <param-name>key</param-name>
             <param-value>value</param-value>

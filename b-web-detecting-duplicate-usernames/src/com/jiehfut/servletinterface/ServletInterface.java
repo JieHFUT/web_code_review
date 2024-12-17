@@ -38,7 +38,7 @@ public class ServletInterface {
 
      private transient ServletConfig config;
 
-     public void destroy() {}  将抽象方法重写为普通方法，在方法内部没有任何实现，称为平庸实现，滞后继承的方法就不要强制重写了
+     public void destroy() {}  将抽象方法重写为普通方法，在方法内部没有任何实现，称为平庸实现，之后继承的方法就不要强制重写了
 
      Tomcat 在调用 init 方法的时候，会读取配置信息进入一个 ServletConfig 对象，并将该对象传入到 init 方法
      public void init(ServletConfig config) throws ServletException {
@@ -101,7 +101,7 @@ public class ServletInterface {
         }
 
 
-
+        很显然，如果自己实现的 Servlet 类没有重写 service() 方法，访问就会报 405
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
             String msg = lStrings.getString("http.method_get_not_supported");
             在故意响应 405，‌HTTP状态码405表示“Method Not Allowed”，即请求中指定的方法不被允许

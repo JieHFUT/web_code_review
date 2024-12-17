@@ -29,12 +29,13 @@ public class ServletConfigTest extends HttpServlet {
 
     <servlet-mapping>
         <servlet-name>servletConfigTest</servlet-name>
-        <url-pattern>servletConfigTest</url-pattern>
+        <url-pattern>/servletConfigTest</url-pattern>
     </servlet-mapping>*/
 
     /**
-     * Tomcat 在读取到上面这些信息后就会对 servlet 进行构造
-     * 在构造的时候，Tomcat 将配置中的初始参数放进 ServletConfig 对象
+     * Tomcat 在读取到上面这些信息后就会对 servlet 进行构造 => 实例化（即为构造）
+     *     启动默认不会实例化，第一次访问实例化；可以通过 <load-on-startup>-1</load-on-startup> 修改为启动服务的时候实例化
+     * 在构造完毕，通过 init() 进行初始化，Tomcat 将配置中的初始参数放进 ServletConfig 对象
      * Tomcat 在调用 servletConfigTest，在进行 init() 的时候，会将这个对象传入，存在父类 GenericServlet 的 config 属性中
      * 我们就可以读到初始化的配置信息：getServletConfig()
      * 每一个 Servlet 都有独立的 ServletConfig 对象，独立配置
