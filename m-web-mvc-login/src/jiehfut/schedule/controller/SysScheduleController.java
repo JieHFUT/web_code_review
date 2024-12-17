@@ -1,4 +1,4 @@
-package jiehfut.hfut.schedule.controller;
+package jiehfut.schedule.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 
 @WebServlet(value = "/schedule/*",name = "scheduleServlet")
-public class SysScheduleController extends BaseController {
+public class SysScheduleController extends jiehfut.hfut.schedule.controller.BaseController {
     // 视为已经实现了 service 方法
     // 对上面的方法进行封装
     protected void add(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

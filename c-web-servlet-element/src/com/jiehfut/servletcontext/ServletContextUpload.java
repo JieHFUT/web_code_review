@@ -31,6 +31,7 @@ public class ServletContextUpload extends HttpServlet {
 
         String path = servletContext.getRealPath("upload");
         System.out.println("path = " + path);
+        // path = E:\code\web_code\out\artifacts\c_web_servlet_element_war_exploded\\upload
         // FileOutputStream fos = new FileOutputStream(path + "\\test.txt");
 
 

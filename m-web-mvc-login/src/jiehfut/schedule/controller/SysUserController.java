@@ -23,7 +23,7 @@ import java.io.IOException;
  */
 
 @WebServlet("/user/*")
-public class SysUserController extends BaseController {
+public class SysUserController extends jiehfut.hfut.schedule.controller.BaseController {
 
     private SysUserService userService = new SysUserServiceImpl();
     /**

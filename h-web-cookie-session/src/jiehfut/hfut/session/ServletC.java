@@ -53,5 +53,16 @@ public class ServletC extends HttpServlet {
         PrintWriter out = resp.getWriter();
         out.write("成功");
 
+
+        /**
+         * 如上述描述，默认参数为 true，等同于 HttpSession session = req.getSession(true);
+         * HttpSession session = req.getSession();
+         *
+         * 加 true 的话，如果服务器中存在对应的 Session 就返回该 Session 对象，否则就新建立一个会话
+         * HttpSession session = req.getSession(true);
+         *
+         * 加 false 的话，如果服务器中存在对应的 Session 就返回该 Session 对象，否则就新返回 null
+         * HttpSession session = req.getSession(false);
+         */
     }
 }

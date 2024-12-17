@@ -59,6 +59,7 @@
 
             假设使用了请求转发真的访问到了 WEB-INF/views/view1.html，在其继续访问 "../../static/img/luffy.jpg" 也是加载不到的
             http://localhost:8080/path/viewPath  =>  请求转发：http://localhost:8080/path/WEB-INF/views/view1.html
+            使用请求转发的时候，浏览器端路径不发生变化
          => http://localhost:8080/path/../../static/img/luffy.jpg  =>  http://localhost:8080/static/img/luffy.jpg
             很显然不能拿到请求的目标资源
 

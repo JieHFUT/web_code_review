@@ -22,7 +22,7 @@ public class SysScheduleController extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         // 解析路径版本三：将其封装进 BaseCoontroller 中
-        // 此时其他的 Controller 类就不用基础 HttpServlet 类了，只需要继承 BaseCoontroller 即可
+        // 此时其他的 Controller 类就不用继承 HttpServlet 类了，只需要继承 BaseCoontroller 即可
         // 此类相当于已经实现了 service 方法，只需要在此类中定义业务处理方法即可：如 add()、update()...
 
 
