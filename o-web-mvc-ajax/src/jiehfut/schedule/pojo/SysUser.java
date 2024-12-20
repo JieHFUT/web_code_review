@@ -33,8 +33,9 @@ import java.io.Serializable;
  *      3.导入 lombok.jar
  *      4.在实体类上添加注解（即视为添加了该有的方法）
  *
- *      @NoArgsConstructor    添加了全参构造
- *      @AllArgsConstructor   添加了无参构造
+ *      @NoArgsConstructor    添加了无参构造
+ *      @AllArgsConstructor   添加了全参构造
+ *
  *      @Getter               添加了 getter 方法
  *      @Setter               添加了 setter 方法
  *      @EqualsAndHashCode    添加了 equals && hashcode 方法
