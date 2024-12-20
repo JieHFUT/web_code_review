@@ -27,7 +27,7 @@
       return false
     }
     // 继续校验用户名是否被占用
-    let response = await request.post(`http://localhost:8080/user/checkUsernameUsed?username=${registUser.username}`)
+    let response = await request.post(`user/checkUsernameUsed?username=${registUser.username}`)
     console.log(response)
 
     // 通过校验

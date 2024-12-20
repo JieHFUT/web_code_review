@@ -9,10 +9,10 @@ import jiehfut.schedule.pojo.SysUser;
 
 import java.io.IOException;
 
-
-@WebFilter(
+// 在使用预检过滤器后要关闭这个登录过滤器，否则登录过滤，预检过滤就会失效，将注解注释掉
+/*@WebFilter(
         urlPatterns = {"/showSchedule.html","/schedule/*"}
-)
+)*/
 public class LoginFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

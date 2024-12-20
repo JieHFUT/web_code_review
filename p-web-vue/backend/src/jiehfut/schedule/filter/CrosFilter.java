@@ -28,9 +28,13 @@ public class CrosFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         System.out.println(request.getMethod());
         HttpServletResponse response = (HttpServletResponse) servletResponse;
+        // 允许跨域，哪些域都行
         response.setHeader("Access-Control-Allow-Origin", "*");
+        // 哪些方法允许跨域
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT,OPTIONS, DELETE, HEAD");
+        // 一次预检请求后，3600s 内再次跨域不用发送预检请求
         response.setHeader("Access-Control-Max-Age", "3600");
+        //
         response.setHeader("Access-Control-Allow-Headers", "access-control-allow-origin, authority, content-type, version-info, X-Requested-With");
         // 如果是跨域预检请求,则直接在此响应 200 业务码
         if(request.getMethod().equalsIgnoreCase("OPTIONS")){
