@@ -5,7 +5,7 @@
          version="6.0">
     
     <!--配置监听器-->
-<!--    <listener>
+<!--<listener>
         <listener-class>com.jiehfut.listener.application.ApplicationListener</listener-class>
     </listener>-->
 </web-app>

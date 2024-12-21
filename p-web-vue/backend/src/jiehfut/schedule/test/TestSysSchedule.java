@@ -5,7 +5,6 @@ import jiehfut.schedule.dao.impl.SysScheduleDaoImpl;
 import jiehfut.schedule.pojo.SysSchedule;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import java.util.List;
 
 /**

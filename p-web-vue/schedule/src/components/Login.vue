@@ -1,5 +1,14 @@
 <script setup>
   import{ ref,reactive} from 'vue'
+  // 导入 request.js 来发送 axios 请求
+  import request from "../utils/request.js";
+  import {defineUser} from "../store/userStore.js"
+  let sysUser = defineUser()
+  // 登陆成功，跳转主页 导入路由
+  import {useRouter} from "vue-router"
+  const router = useRouter()
+
+
   // 响应式数据,保存用户输入的表单信息
   let loginUser =reactive({
     username:'',
@@ -36,6 +45,30 @@
     userPwdMsg.value="ok"
     return true
   }
+  // 登陆的时候发送请求，将 loginUser 转换为一个 JSON 串发送到服务器
+  async function login(){
+    // 校验表单格式数据正确
+    if(!(checkUsername() && checkUserPwd())){
+      return
+    }
+    let {data} = await request.post("user/login", loginUser)
+    console.log(data)
+    if(data.code === 501) {
+      alert("用户名有误")
+    } else if (data.code === 502) {
+      alert("密码有误")
+    } else if (data.code === 200) {
+      alert("登录成功，即将跳转到主页")
+      console.log(data)
+      // 获取的用户信息更新到 pinia 中
+      sysUser.uid = data.data.loginUser.uid
+      sysUser.username = data.data.loginUser.username
+      router.push("/showSchedule")
+    } else {
+      alert("未知错误")
+    }
+  }
+
 </script>
 
 <template>
@@ -64,7 +97,7 @@
       </tr>
       <tr class="ltr">
         <td colspan="2" class="buttonContainer">
-          <input class="btn1" type="button" value="登录">
+          <input class="btn1" type="button" @click="login()" value="登录">
           <input class="btn1" type="button" value="重置">
           <router-link to="/regist">
             <button class="btn1">去注册</button>

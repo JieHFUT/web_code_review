@@ -9,7 +9,7 @@ import jiehfut.schedule.pojo.SysUser;
 
 import java.io.IOException;
 
-// 在使用预检过滤器后要关闭这个登录过滤器，否则登录过滤，预检过滤就会失效，将注解注释掉
+// 由于在添加跨域过滤后，如果登陆过滤拦截了请求，跨域过滤失去作用，所以将登陆过滤注解注释，使其失去作用
 /*@WebFilter(
         urlPatterns = {"/showSchedule.html","/schedule/*"}
 )*/

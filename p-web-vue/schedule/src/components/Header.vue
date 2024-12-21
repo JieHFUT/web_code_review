@@ -1,12 +1,27 @@
 <script setup>
+  /* 导入 pinia 数据 */
+  import {defineUser} from "../store/userStore.js"
+  import {defineSchedule} from "../store/scheduleStore.js"
+  import {useRouter} from "vue-router";
+  let router = useRouter();
 
+  let sysUser = defineUser()
+  let schedule = defineSchedule()
+
+  function logout(){
+    // 退出登陆，清空 pinia，回到登陆页
+    sysUser.$reset()
+    schedule.$reset()
+    // 通过编程式路由
+    router.push('/login')
+  }
 </script>
 
 <template>
   <div>
     <h1 class="ht">欢迎使用日程管理系统</h1>
     <div>
-      <div  class="optionDiv">
+      <div  class="optionDiv" v-if="sysUser.username === ''">
         <router-link to="/login">
           <button class="b1s">登录</button>
         </router-link>
@@ -16,9 +31,9 @@
       </div>
 
 
-      <div  class="optionDiv">
-        欢迎xxx
-        <button class="b1b">退出登录</button>
+      <div  class="optionDiv" v-else>
+        欢迎 {{ sysUser.username }}
+        <button class="b1b" @click="logout()">退出登录</button>
         <router-link to="/showSchedule">
           <button class="b1b">查看我的日程</button>
         </router-link>
@@ -51,7 +66,7 @@
   background-color: antiquewhite;
 }
 .optionDiv{
-  width: 300px;
+  width: 400px;
   float: right;
 }
 </style>

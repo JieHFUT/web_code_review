@@ -1,5 +1,6 @@
 package jiehfut.schedule.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,7 +14,10 @@ import jiehfut.schedule.service.impl.SysUserServiceImpl;
 import jiehfut.schedule.util.MD5Util;
 import jiehfut.schedule.util.WebUtil;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * ClassName: SysUserController
@@ -38,21 +42,34 @@ public class SysUserController extends BaseController {
      */
     protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1.接收客户端提交的参数（username userPwd）
-        String username = req.getParameter("username");
-        String userPwd = req.getParameter("userPwd");
+        // String username = req.getParameter("username");
+        // String userPwd = req.getParameter("userPwd");
+        // 客户端发送的是 JSON 串 {username: "zhangsanx", userPwd: "123456"}
+        // 传统的 req.getParameter() 是不能从 JSON 串中获取数据的，需要将 JSON 串转换为 User 对象
+
+
+/*      BufferedReader reader = req.getReader();
+        StringBuffer buffer = new StringBuffer();
+        String line = reader.readLine();
+        while (line != null) {
+            buffer.append(line);
+            line = reader.readLine();
+        }
+        // 这样就会将 JSON 串拼接为一个完成的 JSON 字符串
+        ObjectMapper mapper = new ObjectMapper();
+        SysUser user = mapper.readValue(buffer.toString(), SysUser.class);
+        上面的这些步骤可以使用工具类中的方法*/
+        SysUser registUser = WebUtil.readJson(req, SysUser.class);
+
 
         // 2.调用服务层的方法，完成注册功能
-            // 将参数放入一个 SysUser 对象中，在调用 regist 方法的时候传入
-        SysUser sysUser = new SysUser(null, username, userPwd);
-        int rows = userService.regist(sysUser);
+        int rows = userService.regist(registUser);
         // 3.根据注册业务的返回结果（注册成功/注册失败），进行页面跳转
-        if (rows > 0) {
-            // 重定向到注册成功页面
-            resp.sendRedirect("/registSuccess.html");
-        } else {
-            // 重定向到注册失败页面
-            resp.sendRedirect("/registFail.html");
+        Result result = Result.ok(null);
+        if (rows < 1) {
+            result = Result.build(null, ResultCodeEnum.USERNAME_USED);
         }
+        WebUtil.writeJson(resp, result);
     }
 
 
@@ -65,25 +82,45 @@ public class SysUserController extends BaseController {
      */
     protected void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 1.接收用户名和密码
-        String username = req.getParameter("username");
-        String userPwd = req.getParameter("userPwd");
+        // String username = req.getParameter("username");
+        // String userPwd = req.getParameter("userPwd");
+        SysUser sysUser = WebUtil.readJson(req, SysUser.class);
+
         // 2.调用 service 层方法查询用户信息
-        SysUser loginUser = userService.findByUsername(username);
+        SysUser loginUser = userService.findByUsername(sysUser.getUsername());
+        Result result = null;
         if (null == loginUser) {
             // 没有找到该用户名对应的用户信息
-            resp.sendRedirect("/loginUsernameError.html");
+            // resp.sendRedirect("/loginUsernameError.html");
+            // 返回的是用户名有误的信息
+            result = Result.build(null, ResultCodeEnum.USERNAME_ERROR);
 
         // 3.找到了对应的用户信息，判断用户密码是否正确
-        } else if (!MD5Util.encrypt(userPwd).equals(loginUser.getUserPwd())){
+        } else if (!MD5Util.encrypt(sysUser.getUserPwd()).equals(loginUser.getUserPwd())){
             // 用户密码错误
-            resp.sendRedirect("/loginUserPwdError.html");
+            // resp.sendRedirect("/loginUserPwdError.html");
+            result = Result.build(null, ResultCodeEnum.PASSWORD_ERROR);
         } else {
             // 4.登录成功，跳转相关页面
             // 登陆成功之后，将登陆成功的用户信息放进 session 域
-            HttpSession session = req.getSession();
-            session.setAttribute("sysUser", loginUser);
-            resp.sendRedirect("/showSchedule.html");
+            // 后期使用 token 进行登陆判断
+            // HttpSession session = req.getSession();
+            // session.setAttribute("sysUser", loginUser);
+            // resp.sendRedirect("/showSchedule.html");
+
+            // 登陆成功，将用户的 UID 和用户的 username 放在 result 中
+            Map data = new HashMap();
+            // data.put("uid", loginUser.getUid());
+            // data.put("username", loginUser.getUsername());
+
+            // 或者将 loginUser 的 password 置空后，将 loginUser 对象放在 map 中
+            loginUser.setUserPwd(null);
+            data.put("loginUser", loginUser);
+
+            result = Result.ok(data);
         }
+
+        WebUtil.writeJson(resp, result);
     }
 
 

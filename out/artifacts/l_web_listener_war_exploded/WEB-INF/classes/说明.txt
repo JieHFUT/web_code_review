@@ -29,3 +29,32 @@ public class ApplicationListener implements ServletContextListener {
     2.使用注解进行配置
         在监听类上注解 @WebListener
 
+
+
+
+
+
+
+
+
+HttpSessionListener
+HttpSessionAttributeListener   这两个类用来监听 session 域
+
+HttpSession session = req.getSession(); =====  session 对象的创建
+session.setAttribute("keyb", "valueb");
+session.getAttribute("keya");
+session.removeAttribute("keya");
+session.invalidate();   =====================  session 对象的手动销毁
+
+
+
+
+
+ServletRequestListener
+ServletRequestAttributeListener  这两个类用来监听 request 域
+
+
+
+HttpSessionBindingListener 监听器用于监听 session 的绑定和解绑的行为
+
+

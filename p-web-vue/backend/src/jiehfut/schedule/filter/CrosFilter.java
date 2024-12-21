@@ -38,6 +38,7 @@ public class CrosFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "access-control-allow-origin, authority, content-type, version-info, X-Requested-With");
         // 如果是跨域预检请求,则直接在此响应 200 业务码
         if(request.getMethod().equalsIgnoreCase("OPTIONS")){
+            // 跨域预检请求，直接响应，响应的内容无所谓，需要是成功的响应 200 即可，代表是一场成功的预检，然后客户端再次发送请求
             WebUtil.writeJson(response, Result.ok(null));
         }else{
             // 非预检请求,放行即可

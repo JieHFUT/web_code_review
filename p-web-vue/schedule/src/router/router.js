@@ -26,4 +26,14 @@ const router = createRouter({
     ]
 })
 
+// 通过路由的全局前置守卫，判断是否可以访问 showSchedule
+router.beforeEach((to, from, next) => {
+    if (to.path === "/showSchedule") {
+        // 登陆了就放行，没有登陆就返回登陆页面
+        
+    }else {
+        next()
+    }
+})
+
 export default router

@@ -2,6 +2,9 @@
   import{ ref,reactive} from 'vue'
   /*导入发送请求的 axios 对象*/
   import request from '../utils/request.js'
+  /*导入路由*/
+  import {useRouter} from "vue-router"
+  const router = useRouter()
 
 
   // 响应式数据,保存用户输入的表单信息
@@ -27,12 +30,20 @@
       return false
     }
     // 继续校验用户名是否被占用
-    let response = await request.post(`user/checkUsernameUsed?username=${registUser.username}`)
-    console.log(response)
-
-    // 通过校验
-    usernameMsg.value="OK"
-    return true
+    // await request.post(`user/checkUsernameUsed?username=${registUser.username}`) 拿到的是整个 response 对象
+    // 结构表达式拿到的是 {data} 是后端发送过来的 JSON 字符串转换的对象
+    let {data} = await request.post(`user/checkUsernameUsed?username=${registUser.username}`)
+    console.log(data)
+    // 检测 response 返回的对象中响应码，看是否被占用
+    if (data.code !== 200) {
+      // 说明该用户名不可使用
+      usernameMsg.value = "用户名已被占用"
+      return false
+    } else {
+      // 通过校验
+      usernameMsg.value="OK"
+      return true
+    }
   }
   // 校验密码的方法
   function checkUserPwd(){
@@ -66,10 +77,31 @@
       return false
     }
 
-
     // 通过校验
     reUserPwdMsg.value="OK"
     return true
+  }
+  // 下面是点击注册按钮时候，如果用户名或者密码不支持，不会发送请求
+  async function regist() {
+    // 校验所有的输入框是否合法
+    let flag1 = await checkUsername()
+    let flag2 = await checkUserPwd()
+    let flag3 = await checkReUserPwd()
+    if(flag1 && flag2 && flag3) {
+      alert("校验通过，即将发送请求进行注册")
+      // 发送请求
+      let {data} = await request.post("user/regist", registUser)
+      console.log(data)
+      if(data.code == 200){
+        // 注册成功跳转到登陆页面
+        alert("注册成功，快去登陆吧")
+        router.push("login")
+      } else {
+        alert("用户名被抢注了")
+      }
+    } else {
+      alert("校验不通过，请再次检查数据是否有误")
+    }
   }
 </script>
 
@@ -116,7 +148,7 @@
       </tr>
       <tr class="ltr">
         <td colspan="2" class="buttonContainer">
-          <input class="btn1" type="button" value="注册">
+          <input class="btn1" type="button" @click="regist()" value="注册">
           <input class="btn1" type="button" value="重置">
           <router-link to="/login">
             <button class="btn1">去登录</button>
