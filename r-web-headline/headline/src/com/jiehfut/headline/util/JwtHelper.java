@@ -15,10 +15,13 @@ import java.util.Date;
  * @Version 1.0
  */
 public class JwtHelper {
-    private static long tokenExpiration = 24*60*60*1000;
+    // token 的有效性
+    private static long tokenExpiration = 60*60*1000;
+    // 密文缀余，在密文反向解析的时候需要知道这一段数据
     private static String tokenSignKey = "123456";
 
     //生成token字符串
+    //一个 long 类型的用户ID，返回一个密文，可以在密文里存储多个键值对
     public static String createToken(Long userId) {
         String token = Jwts.builder()
 
@@ -42,7 +45,7 @@ public class JwtHelper {
 
 
 
-    //判断token是否有效
+    //判断token是否有效，过期了返回 true
     public static boolean isExpiration(String token){
         try {
             boolean isExpire = Jwts.parser()

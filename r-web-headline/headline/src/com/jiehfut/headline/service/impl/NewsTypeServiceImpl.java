@@ -1,6 +1,11 @@
 package com.jiehfut.headline.service.impl;
 
+import com.jiehfut.headline.dao.NewsTypeDao;
+import com.jiehfut.headline.dao.impl.NewsTypeDaoImpl;
+import com.jiehfut.headline.pojo.NewsType;
 import com.jiehfut.headline.service.NewsTypeService;
+
+import java.util.List;
 
 /**
  * ClassName: NewsUserServiceImpl
@@ -12,5 +17,11 @@ import com.jiehfut.headline.service.NewsTypeService;
  * @Version 1.0
  */
 public class NewsTypeServiceImpl implements NewsTypeService {
-    
+
+    private NewsTypeDao newsTypeDao = new NewsTypeDaoImpl();
+
+    @Override
+    public List<NewsType> findAll() {
+        return newsTypeDao.findAll();
+    }
 }

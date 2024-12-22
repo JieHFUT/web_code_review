@@ -12,7 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
  * @Version 1.0
  */
 
-@WebServlet("/type")
+@WebServlet("/type/*")
 public class NewsTypeController extends BaseController {
 
 }

@@ -1,5 +1,8 @@
 package com.jiehfut.headline.service.impl;
 
+import com.jiehfut.headline.dao.NewsUserDao;
+import com.jiehfut.headline.dao.impl.NewsUserDaoImpl;
+import com.jiehfut.headline.pojo.NewsUser;
 import com.jiehfut.headline.service.NewsUserService;
 
 /**
@@ -13,4 +16,10 @@ import com.jiehfut.headline.service.NewsUserService;
  */
 public class NewsUserServiceImpl implements NewsUserService {
 
+    private NewsUserDao newsUserDao = new NewsUserDaoImpl();
+
+    @Override
+    public NewsUser findByUsername(String username) {
+        return newsUserDao.findByUsername(username);
+    }
 }

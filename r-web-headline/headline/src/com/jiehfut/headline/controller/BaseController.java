@@ -23,6 +23,7 @@ public class BaseController extends HttpServlet {
         // 响应的MIME类型和乱码问题
         resp.setContentType("application/json;charset=UTF-8");
 
+
         String requestURI = req.getRequestURI();
         String[] split = requestURI.split("/");
         String methodName =split[split.length-1];
