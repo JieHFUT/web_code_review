@@ -18,4 +18,11 @@ public interface NewsUserService {
      * @return 返回密文 token
      */
     NewsUser findByUsername(String username);
+
+    /**
+     * 用户登录后，请求头中携带 token 信息，响应用户 uid && 用户名
+     * @param uid
+     * @return
+     */
+    NewsUser findByUid(Integer uid);
 }
