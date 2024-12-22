@@ -94,4 +94,45 @@ public class NewsUserController extends BaseController {
         }
         WebUtil.writeJson(resp, result);
     }
+
+
+    /**
+     * 用户注册的时候，填写完用户名，立刻发送请求检查用户名是不是被占用 post
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void checkUserName(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 获取用户名
+        String username = req.getParameter("username");
+        // 检验用户名是否被占用
+        NewsUser newsUser = newsUserService.findByUsername(username);
+        Result result = Result.ok(null);
+        if (null != newsUser) {
+            result = Result.build(null, ResultCodeEnum.USERNAME_USED);
+        }
+        WebUtil.writeJson(resp, result);
+    }
+
+
+    /**
+     * 用户填写完注册信息后，点击提交按钮，提交用户账号和密码等信息
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void regist(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // 接收请求中的 JSON 信息
+        NewsUser newsUser = WebUtil.readJson(req, NewsUser.class);
+        // 将用户数据存入数据库
+        Integer rows = newsUserService.registUser(newsUser);
+
+        Result result = Result.ok(null);
+        if (rows == 0) {
+            result = Result.build(null, ResultCodeEnum.USERNAME_USED);
+        }
+        WebUtil.writeJson(resp, result);
+    }
 }

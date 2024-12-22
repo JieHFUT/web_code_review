@@ -25,4 +25,11 @@ public interface NewsUserService {
      * @return
      */
     NewsUser findByUid(Integer uid);
+
+    /**
+     * 用户填写注册信息后，点击注册按钮后将用户信息存入数据库
+     * @param newsUser
+     * @return
+     */
+    Integer registUser(NewsUser newsUser);
 }

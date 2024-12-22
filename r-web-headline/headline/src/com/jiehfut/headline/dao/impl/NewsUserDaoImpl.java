@@ -4,6 +4,7 @@ import com.jiehfut.headline.dao.BaseDao;
 import com.jiehfut.headline.dao.NewsUserDao;
 import com.jiehfut.headline.pojo.NewsUser;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 /**
@@ -59,6 +60,12 @@ public class NewsUserDaoImpl extends BaseDao implements NewsUserDao {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public Integer registUser(NewsUser newsUser) {
+        String sql = "insert into news_user values (DEFAULT,?,?,?)";
+        return baseUpdate(sql, newsUser.getUsername(), newsUser.getUserPwd(), newsUser.getNickName());
     }
 
 

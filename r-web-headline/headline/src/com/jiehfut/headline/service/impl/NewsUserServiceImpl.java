@@ -4,6 +4,7 @@ import com.jiehfut.headline.dao.NewsUserDao;
 import com.jiehfut.headline.dao.impl.NewsUserDaoImpl;
 import com.jiehfut.headline.pojo.NewsUser;
 import com.jiehfut.headline.service.NewsUserService;
+import com.jiehfut.headline.util.MD5Util;
 
 /**
  * ClassName: NewsUserServiceImpl
@@ -26,5 +27,12 @@ public class NewsUserServiceImpl implements NewsUserService {
     @Override
     public NewsUser findByUid(Integer uid) {
         return newsUserDao.findByuid(uid);
+    }
+
+    @Override
+    public Integer registUser(NewsUser newsUser) {
+        // 将用户注册的明文密码转换为密文密码
+        newsUser.setUserPwd(MD5Util.encrypt(newsUser.getUserPwd()));
+        return newsUserDao.registUser(newsUser);
     }
 }
