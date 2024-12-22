@@ -127,12 +127,26 @@ public class NewsUserController extends BaseController {
         // 接收请求中的 JSON 信息
         NewsUser newsUser = WebUtil.readJson(req, NewsUser.class);
         // 将用户数据存入数据库
-        Integer rows = newsUserService.registUser(newsUser);
-
         Result result = Result.ok(null);
-        if (rows == 0) {
+        try {
+            Integer rows = newsUserService.registUser(newsUser);
+        } catch (Exception e) {
             result = Result.build(null, ResultCodeEnum.USERNAME_USED);
+            System.out.println(e.getMessage());
+        } finally {
+            WebUtil.writeJson(resp, result);
         }
-        WebUtil.writeJson(resp, result);
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
