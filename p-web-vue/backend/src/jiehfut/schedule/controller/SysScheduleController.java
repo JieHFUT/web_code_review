@@ -88,8 +88,8 @@ public class SysScheduleController extends BaseController {
         // 前端点击修改按钮后发送该 日程对象发送到后端
         // 接收日程对象，更新数据库中对应的日程，给前端成功响应
         SysSchedule sysSchedule = WebUtil.readJson(req, SysSchedule.class);
-        sysScheduleService.removeSchedule(sysSchedule);
+        Integer data = sysScheduleService.removeSchedule(sysSchedule);
 
-        WebUtil.writeJson(resp, Result.ok(null));
+        WebUtil.writeJson(resp, Result.ok(data));
     }
 }

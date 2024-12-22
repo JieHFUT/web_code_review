@@ -57,5 +57,5 @@ public interface SysScheduleDao {
      * 前端用户在点击删除按钮以后，将要删除的日程对象发送给后端，后端从数据库中删除该日程记录
      * @param sysSchedule
      */
-    void removeSchedule(SysSchedule sysSchedule);
+    Integer removeSchedule(SysSchedule sysSchedule);
 }

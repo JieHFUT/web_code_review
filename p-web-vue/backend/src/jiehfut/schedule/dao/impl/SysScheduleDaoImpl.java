@@ -50,9 +50,9 @@ public class SysScheduleDaoImpl extends BaseDao implements SysScheduleDao {
     }
 
     @Override
-    public void removeSchedule(SysSchedule sysSchedule) {
+    public Integer removeSchedule(SysSchedule sysSchedule) {
         String sql = "delete from sys_schedule where sid = ?";
-        baseUpdate(sql, sysSchedule.getSid());
+        return baseUpdate(sql, sysSchedule.getSid());
     }
 
 

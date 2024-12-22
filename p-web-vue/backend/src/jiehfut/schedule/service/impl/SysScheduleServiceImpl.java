@@ -36,7 +36,7 @@ public class SysScheduleServiceImpl implements SysScheduleService {
     }
 
     @Override
-    public void removeSchedule(SysSchedule sysSchedule) {
-        sysScheduleDao.removeSchedule(sysSchedule);
+    public Integer removeSchedule(SysSchedule sysSchedule) {
+        return sysScheduleDao.removeSchedule(sysSchedule);
     }
 }
