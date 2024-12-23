@@ -38,7 +38,51 @@ public class PortalController extends BaseController {
     /**
      * 查询所有的新闻类型的业务接口实现
      * @param req
+     * {
+     *     "keyWords":"马斯克", // 搜索标题关键字
+     *     "type":0,           // 新闻类型
+     *     "pageNum":1,        // 页码数
+     *     "pageSize":"10"     // 页大小
+     * }
      * @param resp
+     * {
+     *     "code":"200",
+     *  	"message":"success"
+     *  	"data":{
+     *     	"pageInfo":{
+     *     		"pageData":[                           // 本页的数据
+     *     			                {
+     *     				"hid":"1",                     // 新闻id
+     *     				"title":"尚硅谷宣布 ... ...",   // 新闻标题
+     *     				"type":"1",                    // 新闻所属类别编号
+     *     				"pageViews":"40",              // 新闻浏览量
+     *     				"pastHours":"3" ,              // 发布时间已过小时数
+     *     				"publisher":"1"                // 发布用户ID
+     * 				},
+     * 				{
+     *     				"hid":"1",                     // 新闻id
+     *     				"title":"尚硅谷宣布 ... ...",   // 新闻标题
+     *     				"type":"1",                    // 新闻所属类别编号
+     *     				"pageViews":"40",              // 新闻浏览量
+     *     				"pastHours":"3",              // 发布时间已过小时数
+     *     				"publisher":"1"                // 发布用户ID
+     * 				},
+     * 				{
+     *     				"hid":"1",                     // 新闻id
+     *     				"title":"尚硅谷宣布 ... ...",   // 新闻标题
+     *     				"type":"1",                    // 新闻所属类别编号
+     *     				"pageViews":"40",              // 新闻浏览量
+     *     				"pastHours":"3",               // 发布时间已过小时数
+     *     				"publisher":"1"                // 发布用户ID
+     * 				}
+     *     		],
+     * 			"pageNum":1,    //页码数
+     * 			"pageSize":10,  // 页大小
+     * 			"totalPage":20, // 总页数
+     * 			"totalSize":200 // 总记录数
+     * 		}
+     * 	}
+     * }
      * @throws ServletException
      * @throws IOException
      */
@@ -49,12 +93,15 @@ public class PortalController extends BaseController {
     }
 
 
+    /**
+     * 用户在成功登陆后，跳转到首页面，分页带条件查询所有头条
+     * @param req
+     * @param resp
+     * @throws ServletException
+     * @throws IOException
+     */
+    protected void findNewsPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
-
-
-
-
-
-
+        WebUtil.writeJson(resp, Result.ok(null));
+    }
 }
